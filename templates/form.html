@@ -14,5 +14,10 @@
             <input type="date" id="end_date" name="end_date" required><br><br>
             <input type="submit" value="Submit">
         </form>
+        <ul>
+            {% for line in lines %}
+            <li>{{ line }}</li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

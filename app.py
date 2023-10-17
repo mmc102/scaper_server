@@ -8,7 +8,9 @@ templates = Jinja2Templates(directory="templates")  # Create a templates directo
 
 @app.get("/")
 async def read_root(request: Request):
-    return templates.TemplateResponse("form.html", {"request": request})
+    with open("dates.txt", "r") as file:
+        lines = file.readlines()
+    return templates.TemplateResponse("form.html", {"request": request, "lines":lines})
 
 @app.post("/")
 async def write_dates(request: Request, name:str=Form(...), start_date: str = Form(...), end_date: str = Form(...)):
