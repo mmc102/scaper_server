@@ -5,7 +5,7 @@
     </head>
     <body>
         <h2>Enter Start and End Dates</h2>
-        <form method="post">
+        <form action="/add" method="post">
             <label for="start_date">Name</label>
             <input type="text" id="name" name="name" required><br><br>
             <label for="start_date">Start Date:</label>
@@ -14,9 +14,14 @@
             <input type="date" id="end_date" name="end_date" required><br><br>
             <input type="submit" value="Submit">
         </form>
+        <h1>Job list</h1>
         <ul>
             {% for line in lines %}
             <li>{{ line }}</li>
+            <form action="/remove?line={{ line }}" method="post">
+                <input type="hidden" id="line" name="line" value="{{ line }}" required>
+                <button type="submit">Kill</button>
+            </form>
             {% endfor %}
         </ul>
     </body>
