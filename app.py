@@ -30,6 +30,9 @@ async def remove_line(request:Request,line: str= Form(...)):
     except ValueError:
         pass
 
+    with open("kill.txt", "w") as file:
+        _name, _start, _end, container_id, _status = line.split("|")
+        file.write(container_id)
     # Update the file with the new lines
     with open("dates.txt", "w") as file:
         file.writelines(lines)
