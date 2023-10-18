@@ -16,7 +16,7 @@ async def read_root(request: Request):
 @app.post("/add")
 async def write_dates(request: Request, name:str=Form(...), start_date: str = Form(...), end_date: str = Form(...)):
     with open("dates.txt", "a") as file:
-        file.write(f"{name}|{start_date}|{end_date}\n")
+        file.write(f"{name}|{start_date}|{end_date}|Null|Null\n")
 
     return templates.TemplateResponse("form.html", {"request": request})
 
@@ -38,6 +38,8 @@ async def remove_line(request:Request,line: str= Form(...)):
     return templates.TemplateResponse("form.html", {"request": request})
 
 
+# TODO add tracking on docker PID and kill when the job is over
+# TODO group by
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
